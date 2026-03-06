@@ -1,0 +1,62 @@
+# デフォルト設定
+
+# データ設定
+data:
+  image_size: 224
+  batch_size: 64
+  num_workers: 4
+  
+  # データ拡張
+  augmentation:
+    random_crop: true
+    random_flip: true
+    color_jitter: 0.3
+    random_rotation: 15
+    random_erase: 0.3
+    cutmix: true
+    mixup: false
+    label_smoothing: 0.1
+
+# モデル設定
+model:
+  name: "photo_classifier"  # photo_classifier, tiny, mobilenet_v3_small
+  num_classes: 2
+  dropout: 0.2
+  width_mult: 0.75  # photo_classifier用
+
+# 訓練設定
+training:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adamw"  # adam, adamw, sgd
+  scheduler: "cosine"  # cosine, onecycle, none
+  
+  # 学習率スケジュール
+  min_lr: 0.000001
+  warmup_epochs: 5
+  
+  # 正則化
+  grad_clip: 1.0
+  early_stopping_patience: 15
+  
+  # Mixed Precision
+  use_amp: true
+
+# 評価設定
+evaluation:
+  use_tta: true  # Test Time Augmentation
+  n_tta: 5
+
+# パス設定
+paths:
+  data_dir: "./data/processed"
+  checkpoint_dir: "./checkpoints"
+  log_dir: "./logs"
+  output_dir: "./outputs"
+
+# 実験設定
+experiment:
+  name: "photo_vs_illustration"
+  seed: 42
+  save_best_only: false

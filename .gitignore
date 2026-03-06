@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+data/
+checkpoints/
+checkpoints_test/
+*.pth
+*.pt
+*.onnx
+*.pkl
+logs/
+outputs/
+.DS_Store
+.env
